@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/product.model.js')
 const productRoute = require('./routes/product.route.js')
+require('dotenv').config();
 
 const app = express()
 app.use(express.json());
@@ -16,7 +17,7 @@ app.get('/',(req,res) =>{
 });
 
 
-mongoose.connect("mongodb+srv://gurlahemanth:hemanthsai@backend.iprip.mongodb.net/superapi?retryWrites=true&w=majority&appName=Backend")
+mongoose.connect(process.env.DATABASE_URL)
   .then(() =>{
     console.log('Connected!'); 
     app.listen(3000, () => {
